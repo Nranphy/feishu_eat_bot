@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "feishu_eat_bot"
+version = "0.5.0"
+description = ""
+authors = ["Nranphy <3102002900@qq.com>"]
+license = "MIT License"
+readme = "README.md"
+packages = [{include = "feishu_eat_bot"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+httpx = "^0.26.0"
+loguru = "^0.7.2"
+schedule = "^1.2.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
