@@ -5,7 +5,7 @@ from typing import Any
 import httpx
 
 
-data_path = Path("../data")
+data_path = Path(__file__).parent / Path("../data")
 
 def get_china_time() -> str:
     return (datetime.utcnow() + timedelta(hours=8)).strftime('%H:%M:%S')

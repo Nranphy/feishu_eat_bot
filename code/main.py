@@ -29,8 +29,8 @@ bot = Bot(
 # )
 
 
-@schedule.repeat(schedule.every().day.at("11:50"), time_segment = "中午")
-@schedule.repeat(schedule.every().day.at("18:50"), time_segment = "晚上")
+@schedule.repeat(schedule.every().day.at("11:20"), time_segment = "中午")
+@schedule.repeat(schedule.every().day.at("18:30"), time_segment = "晚上")
 def eat_remind(time_segment: str = ""):
     try:
         resp_info = get_today_info()
@@ -41,10 +41,10 @@ def eat_remind(time_segment: str = ""):
         return
     with open(data_path / "what2eat.json", "r", encoding="utf-8-sig") as f:
         dish_info = json.load(f).get("data")
-    dish_choose = random.choices(dish_info, k = 5)
+    dish_choose: list[dict] = random.choices(dish_info, k = 5)
     dish_text = "\n".join(
-        [f"{i+1}. 【{dish.get('type')}】{dish.get('name')} 家的\n\
-         {dish.get('dish')}  (￥{dish.get('price')})\n" for i, dish in enumerate(dish_choose)]
+        [f"{i+1}. 【{dish.get('type')}】{dish.get('name')}\n地点：{dish.get('place')} | 价格：{dish.get('price')}\n" \
+         for i, dish in enumerate(dish_choose)]
     )
     bot.send(
         Message(
@@ -54,12 +54,12 @@ def eat_remind(time_segment: str = ""):
                         "要准备吃饭了吗~\n"
                         "\n"
                         "如果不知道吃什么，那么现在推荐的菜品有——\n"
-                        "1. 【堂食】迷宫饭 家的\n水煮大蝎子走路菇火锅！！  (￥0)\n"
-                        "2. 【堂食】迷宫饭 家的\n食人植物水果塔  (￥0)\n"
-                        "3. 【堂食】迷宫饭 家的\n炸什锦曼德拉草与大蝙蝠天妇罗  (￥0)\n"
-                        "4. 【堂食】迷宫饭 家的\n会动的铠甲全餐  (￥0)\n"
-                        "5. 【堂食】迷宫饭 家的\n祈求消灾解厄！除灵雪酪  (￥0)\n"
-                        # f"{dish_text}"
+                        # "1. 【堂食】迷宫饭 家的\n水煮大蝎子走路菇火锅！！  (￥0)\n"
+                        # "2. 【堂食】迷宫饭 家的\n食人植物水果塔  (￥0)\n"
+                        # "3. 【堂食】迷宫饭 家的\n炸什锦曼德拉草与大蝙蝠天妇罗  (￥0)\n"
+                        # "4. 【堂食】迷宫饭 家的\n会动的铠甲全餐  (￥0)\n"
+                        # "5. 【堂食】迷宫饭 家的\n祈求消灾解厄！除灵雪酪  (￥0)\n"
+                        f"{dish_text}"
                         "\n"
                         f"那么，今天{time_segment}也要好好干饭哦~！！"
                     )
