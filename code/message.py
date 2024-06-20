@@ -2,7 +2,7 @@ from typing import Literal, Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
-class MessageSegment:    
+class MessageSegment:
 
     # TODO: 仅考虑了简单的信息发送，不包含以下消息：
     # 【难以获取接口权限】
