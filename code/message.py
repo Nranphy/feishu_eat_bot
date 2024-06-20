@@ -2,7 +2,15 @@ from typing import Literal, Any, Optional
 from dataclasses import dataclass, field
 
 @dataclass
-class MessageSegment:
+class MessageSegment:    
+
+    # TODO: 仅考虑了简单的信息发送，不包含以下消息：
+    # 【难以获取接口权限】
+    # 发送群名片：https://open.feishu.cn/document/client-docs/bot-v3/add-custom-bot#发送群名片
+    # 发送图片：https://open.feishu.cn/document/client-docs/bot-v3/add-custom-bot#发送图片
+    # 此外，at 用户也难以获取用户 id：https://open.feishu.cn/document/client-docs/bot-v3/add-custom-bot#9eb9367
+    # 【需要设计新类型】
+    # 发送消息卡片：https://open.feishu.cn/document/client-docs/bot-v3/add-custom-bot#发送消息卡片
 
     tag: Literal["text", "a", "at", "img", "delimiter"]
     '''消息段类型'''
@@ -133,11 +141,3 @@ class Message:
                     }
                 }
             }
-
-# TODO: 仅考虑了简单的信息发送，不包含以下消息：
-# 【难以获取接口权限】
-# 发送群名片：https://open.feishu.cn/document/client-docs/bot-v3/add-custom-bot#发送群名片
-# 发送图片：https://open.feishu.cn/document/client-docs/bot-v3/add-custom-bot#发送图片
-# 此外，at 用户也难以获取用户 id：https://open.feishu.cn/document/client-docs/bot-v3/add-custom-bot#9eb9367
-# 【需要设计新类型】
-# 发送消息卡片：https://open.feishu.cn/document/client-docs/bot-v3/add-custom-bot#发送消息卡片
